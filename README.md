@@ -16,5 +16,6 @@ Employees (except Employee) can have any number of subordinates of any kind.
 # Features
 - Implement database layer.
 - Refactor the BountyCalculationRules class in which the parameters for calculation are stored. Singleton must be replaced with a factory + strategy in order to get away from the switch case.
-- Calculate all method for UI.
-- Delete and Update method for Person entity
+- Calculate all method in UI.
+- Delete and Update method for Person entity.
+- Fix Calculate dialog in UI.
