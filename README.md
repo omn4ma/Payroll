@@ -13,7 +13,7 @@ Sales employee salary is the base rate plus 1% for each year of work in the comp
 
 Employees (except Employee) can have any number of subordinates of any kind.
 
-#Features
+# Features
 - Implement database layer.
 - Refactor the BountyCalculationRules class in which the parameters for calculation are stored. Singleton must be replaced with a factory + strategy in order to get away from the switch case.
 - Calculate all method for UI.
