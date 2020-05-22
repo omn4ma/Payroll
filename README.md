@@ -19,3 +19,4 @@ Employees (except Employee) can have any number of subordinates of any kind.
 - Calculate all method in UI.
 - Delete and Update method for Person entity.
 - Fix Calculate dialog in UI.
+- Write "Required" section
