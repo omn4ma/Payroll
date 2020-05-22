@@ -1,21 +1,16 @@
-﻿using System;
+﻿using Payroll.Domain.Models;
+using System;
 using System.Collections.Generic;
 
-namespace Payroll.Domain.Models
+namespace Payroll.WebApplication.Models
 {
-    public class Person
+    public class PersonView
     {
         public int Id { get; set; }
         public DateTime DateOfEmployment { get; set; }
         public Position Position { get; set; }
         public int Rate { get; set; }
-        public Person Head { get; set; }
-        public List<Person> Staff { get; set; }
+        public List<PersonView> Staff { get; set; }
         public string Name { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Position} {Name}";
-        }
     }
 }

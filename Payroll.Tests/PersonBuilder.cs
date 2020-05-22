@@ -11,6 +11,7 @@ namespace Payroll.Tests
             return new Person
             {
                 Id = 1,
+                Name = "Test Person",
                 DateOfEmployment = DateTime.Today.AddYears(-years),
                 Staff = new List<Person>(),
                 Head = null,

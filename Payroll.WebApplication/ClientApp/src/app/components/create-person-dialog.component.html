@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add info for newcomer!</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput
+            placeholder="Name"
+           formControlName="newPerson.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="newPerson" cdkFocusInitial>Confirm</button>
+</div>
