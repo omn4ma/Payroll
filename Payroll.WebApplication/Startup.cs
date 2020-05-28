@@ -39,7 +39,7 @@ namespace Payroll.WebApplication
             services.AddSingleton(s => {
                 var mock = new Mock<IPersonRepository>();
                 mock.Setup(x => x.Save(It.IsAny<Person>())).Returns(10);
-                mock.Setup(x => x.GetList()).Returns(new Person[] {
+                mock.Setup(x => x.GetGraph()).Returns(new Person[] {
                     PersonBuilder.Create(Position.Manager, 2)
                     .AddStaff(PersonBuilder.Create(Position.Manager, 1).AddStaff(Position.Employee, 3))
                     .AddStaff(Position.Employee, 2),

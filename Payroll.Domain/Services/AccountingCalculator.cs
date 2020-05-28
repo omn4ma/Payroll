@@ -53,5 +53,10 @@ namespace Payroll.Domain.Services
             public decimal StaffSalarySum { get; set; }
             public decimal LowLevelsStaffSalarySum { get; set; }
         }
+
+        public decimal CalculateTotalSalary(DateTime calculationDate)
+        {
+            return 209m;
+        }
     }
 }

@@ -6,6 +6,8 @@ using Payroll.Domain.Services;
 using Payroll.Tests;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tests
 {
@@ -44,10 +46,29 @@ namespace Tests
             Assert.AreEqual(expectedSalary, salary);
         }
 
+        [Test]
+        [TestCaseSource(typeof(TestsDataFactory), nameof(TestsDataFactory.CalculateTotalCases))]
+        public void CalculateSalary_TotalCases_ChechEquals(List<Person> persons, DateTime calculationDate, decimal expectedSalary)
+        {
+            var calculator = GetCalculator(persons);
+
+            var salary = calculator.CalculateTotalSalary(calculationDate);
+
+            Assert.AreEqual(expectedSalary, salary);
+        }
+
         private static AccountingCalculator GetCalculator(Person person)
         {
             var repository = new Mock<IPersonRepository>();
             repository.Setup(x => x.GetPerson(It.IsAny<int>())).Returns(person);
+            var calculator = new AccountingCalculator(repository.Object);
+            return calculator;
+        }
+
+        private static AccountingCalculator GetCalculator(List<Person> persons)
+        {
+            var repository = new Mock<IPersonRepository>();
+            repository.Setup(x => x.GetGraph()).Returns(persons);
             var calculator = new AccountingCalculator(repository.Object);
             return calculator;
         }
@@ -100,6 +121,17 @@ namespace Tests
                 yield return new TestCaseData(PersonBuilder.Create(Position.Employee, 100), DateTime.Today, 130m);
                 yield return new TestCaseData(PersonBuilder.Create(Position.Manager, 100), DateTime.Today, 140m);
                 yield return new TestCaseData(PersonBuilder.Create(Position.Sales, 100), DateTime.Today, 135m);
+            }
+        }
+
+        public static IEnumerable CalculateTotalCases
+        {
+            get
+            {
+                yield return new TestCaseData(new Person[] {
+                    PersonBuilder.Create(Position.Employee, 1),
+                    PersonBuilder.Create(Position.Employee, 2)
+                }.ToList(), DateTime.Today, 209m);
             }
         }
     }

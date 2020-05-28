@@ -22,7 +22,7 @@ namespace Payroll.WebApplication.Controllers
         [HttpGet("[action]")]
         public IEnumerable<PersonView> Graph()
         {
-            var persons = repository.GetList();
+            var persons = repository.GetGraph();
             return mapper.Map<List<PersonView>>(persons);
         }
 
