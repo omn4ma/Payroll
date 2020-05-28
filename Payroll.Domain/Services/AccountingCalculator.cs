@@ -22,6 +22,23 @@ namespace Payroll.Domain.Services
             return result.Salary;
         }
 
+        public decimal CalculateTotalSalary(DateTime calculationDate)
+        {
+            var persons = reposity.GetGraph();
+            var total = 0m;
+
+            foreach (var person in persons)
+            {
+                var result = CalculateSalary(calculationDate, person);
+
+                total += result.Salary;
+                total += result.StaffSalarySum;
+                total += result.LowLevelsStaffSalarySum;
+            }
+
+            return total;
+        }
+
         private SalaryCalculationResult CalculateSalary(DateTime date, Person person)
         {
             var result = new SalaryCalculationResult();
@@ -52,11 +69,6 @@ namespace Payroll.Domain.Services
             public decimal Salary { get; set; }
             public decimal StaffSalarySum { get; set; }
             public decimal LowLevelsStaffSalarySum { get; set; }
-        }
-
-        public decimal CalculateTotalSalary(DateTime calculationDate)
-        {
-            return 209m;
         }
     }
 }

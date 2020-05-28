@@ -132,6 +132,14 @@ namespace Tests
                     PersonBuilder.Create(Position.Employee, 1),
                     PersonBuilder.Create(Position.Employee, 2)
                 }.ToList(), DateTime.Today, 209m);
+                yield return new TestCaseData(new Person[] {
+                    PersonBuilder.Create(Position.Employee, 0),
+                    PersonBuilder.Create(Position.Manager, 0).AddStaff(Position.Employee, 0)
+                }.ToList(), DateTime.Today, 300.5m);
+                yield return new TestCaseData(new Person[] {
+                    PersonBuilder.Create(Position.Employee, 0),
+                    PersonBuilder.Create(Position.Sales, 0).AddStaff(PersonBuilder.Create(Position.Manager, 0).AddStaff(Position.Employee, 0))
+                }.ToList(), DateTime.Today, 401.1015m);
             }
         }
     }
